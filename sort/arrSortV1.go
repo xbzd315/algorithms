@@ -116,8 +116,8 @@ import (
 // 主函数
 func main() {
     // nums := []int{3, 6, 8, 10, 1, 2, 1}
-    nums := []int{1, 1, 2, 3, 6, 8, 10}
-
+    nums := []int{3, 1, 0, 4, 5, 2, 9, 12}
+    
     // 快速排序版本1
     // sorter := quickSort{1}
 	// sorter.level = 1
