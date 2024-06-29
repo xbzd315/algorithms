@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"datatype/utils"
+	"algorithms/datatype/util"
 ) 
 
 func init() {
@@ -11,5 +11,5 @@ func init() {
 
 func main() {
 	
-	fmt.Println(" main func A value", utils.A)
+	fmt.Println(" main func A value", util.A)
 }
