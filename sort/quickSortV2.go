@@ -5,7 +5,7 @@ import(
 )
 
 // 定义快排结构题
-type quickSorter struct {\
+type quickSorter struct {
 	// 记录递归层级，便于分析解释为什么快排不稳定，可能出现O(N^2)的时间复杂度
 	// 会用 升序数组，使用最左侧元素作为 基准值做升序排序， 浮现O(N^2)时间复杂度
 	level int
@@ -36,12 +36,12 @@ func (qs *quickSorter) quickSort(arr []int,  left , right , level int) {
 	l := left
 	r := right
 
-	for l <= r {
-		for l <= r && arr[l] <= arr[midIndex] {
+	for l < r {
+		for l < r && arr[l] <= arr[midIndex] {
 			l ++
 			continue
 		}
-		for l <= r && arr[r] >= arr[midIndex] {
+		for l < r && arr[r] >= arr[midIndex] {
 			r --
 			continue
 		}
@@ -50,7 +50,7 @@ func (qs *quickSorter) quickSort(arr []int,  left , right , level int) {
 	arr[midIndex], arr[l] = arr[l], arr[midIndex]
 	
 	// 分治重复上述操作
-	qs.quickSort(arr, left, l, level+1)
+	qs.quickSort(arr, left, l - 1, level+1)
 	qs.quickSort(arr, l + 1, right, level+1)
 
 	return
@@ -83,12 +83,12 @@ func (qs *quickSorter) max(a, b int) int{
 
 func main () {
 
-	qs := quickSorter{}
-
-	qs.level = 0
-	arr := []int{1,2,3,4,5,6,7,8}
+	qs := quickSorter{0}
+	
+	fmt.Println("before sort: ", arr)
+	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 
 	qs.quickSort( arr, 0, len(arr) -1, 0)
-
-	fmt.Println(arr)
+	fmt.Println("after sort: ", arr)
+	fmt.Println("max level: ", ms.level)
 }
