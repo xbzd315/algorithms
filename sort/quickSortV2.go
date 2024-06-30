@@ -85,10 +85,9 @@ func main () {
 
 	qs := quickSorter{0}
 	
-	fmt.Println("before sort: ", arr)
 	arr := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
+	fmt.Println("before sort: ", arr)
 	qs.quickSort( arr, 0, len(arr) -1, 0)
 	fmt.Println("after sort: ", arr)
-	fmt.Println("max level: ", ms.level)
+	fmt.Println("max level: ", qs.level)
 }
