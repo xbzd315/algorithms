@@ -6,6 +6,7 @@ import (
 
 // 定义归并排序 结构体
 type mergeSort struct {
+	// 用于计算递归的最大深度
 	level int
 }
 // 归并排序方法
@@ -25,7 +26,6 @@ func (ms *mergeSort) mergeSort(arr, temp []int, left ,right, level int) {
 
 	l := left
 	l1 := mid + 1
-	r1 := right
 	// 回溯合并的过程
 	for i := left ; i <= right ; i++ {
 		if l > mid  {
@@ -33,17 +33,17 @@ func (ms *mergeSort) mergeSort(arr, temp []int, left ,right, level int) {
 			l1 += 1
 			continue
 		}
-		if l1 > r1  {
+		if l1 > right  {
 			temp[i] = arr[l]
 			l += 1
 			continue
 		}
 		// 按照顺序赋值 给临时切片
-		if arr[l] <= arr[l1] && l <= mid  {
+		if arr[l] <= arr[l1]  {
 			temp[i] = arr[l]
 			l += 1
-		} 
-		if arr[l] > arr[l1] && l1 <= r1  {
+		} else {
+
 			temp[i] = arr[l1]
 			l1 += 1
 		}
@@ -57,6 +57,7 @@ func (ms *mergeSort) mergeSort(arr, temp []int, left ,right, level int) {
 	return 
 }
 
+// 求最大值
 func (ms *mergeSort) max(a, b int) int{
 	if a >= b  {
 		return a
@@ -75,7 +76,7 @@ func main () {
 
 	// 定义结构体类型
 	ms := mergeSort{0}
-	ms.mergeSort(arr, temp, 0, len(arr)-1, 1)
+	ms.mergeSort(arr, temp, 0, len(arr)-1, 0)
 	fmt.Println("after sort: ", arr)
 	fmt.Println("max level: ", ms.level)
 }
