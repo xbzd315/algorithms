@@ -22,14 +22,13 @@ func (qs *quickSorter) quickSort(arr []int,  left , right , level int) {
 		return 
 	}
 
-	mid := (left + right) >> 1
-
+	
 	// 记录当前递归拆分的最大深度 
 	qs.level = qs.max(qs.level, level)
-
 	// 尽可能选取中间值 作为基准值
+	mid := (left + right) >> 1
 	midIndex := qs.getMidIndex(arr, left, right, mid)
-	
+
 	// 选择最左边下标作为基准值
 	// midIndex := left
 	
@@ -37,21 +36,19 @@ func (qs *quickSorter) quickSort(arr []int,  left , right , level int) {
 	r := right
 
 	for l < r {
-		for l < r && arr[l] <= arr[midIndex] {
+		for l < r && arr[l] < arr[midIndex] {
 			l ++
-			continue
 		}
 		for l < r && arr[r] >= arr[midIndex] {
 			r --
-			continue
 		}
 		arr[l], arr[r] = arr[r], arr[l]
 	}
 	arr[midIndex], arr[l] = arr[l], arr[midIndex]
 	
 	// 分治重复上述操作
-	qs.quickSort(arr, left, l - 1, level+1)
-	qs.quickSort(arr, l + 1, right, level+1)
+	qs.quickSort(arr, left, l - 1, level + 1)
+	qs.quickSort(arr, l + 1, right, level + 1)
 
 	return
 
